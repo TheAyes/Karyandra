@@ -10,7 +10,21 @@
       "docURL": "...",
       "version": "initial",
       "description": "Default",
-      "imageUrl": ""
+      "imageUrl": "",
+      "primary": {
+        "genre": {
+          "type": "Link",
+          "config": {
+            "label": "Genre",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "genre"
+            ]
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

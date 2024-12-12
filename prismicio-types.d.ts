@@ -22,6 +22,17 @@ interface GenreDocumentData {
   name: prismic.KeyTextField;
 
   /**
+   * Cover Image field in *Genre*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: genre.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
+
+  /**
    * Slice Zone field in *Genre*
    *
    * - **Field Type**: Slice Zone
@@ -135,7 +146,7 @@ interface HomeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
@@ -178,7 +189,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type SongDocumentDataSlicesSlice = RichTextSlice | HeroSlice;
+type SongDocumentDataSlicesSlice = RichTextSlice;
 
 /**
  * Content for Song documents
@@ -194,6 +205,39 @@ interface SongDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   song_title: prismic.KeyTextField;
+
+  /**
+   * Artist field in *Song*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: song.artist
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  artist: prismic.KeyTextField;
+
+  /**
+   * Genre field in *Song*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: song.genre
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  genre: prismic.ContentRelationshipField<"genre">;
+
+  /**
+   * Cover Image field in *Song*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: song.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
 
   /**
    * Slice Zone field in *Song*
@@ -257,6 +301,21 @@ export type AllDocumentTypes =
   | SongDocument;
 
 /**
+ * Primary content in *GenreBlock → Default → Primary*
+ */
+export interface GenreBlockSliceDefaultPrimary {
+  /**
+   * Genre field in *GenreBlock → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: genre_block.default.primary.genre
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  genre: prismic.ContentRelationshipField<"genre">;
+}
+
+/**
  * Default variation for GenreBlock Slice
  *
  * - **API ID**: `default`
@@ -265,7 +324,7 @@ export type AllDocumentTypes =
  */
 export type GenreBlockSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<GenreBlockSliceDefaultPrimary>,
   never
 >;
 
@@ -449,6 +508,7 @@ declare module "@prismicio/client" {
       SongDocumentDataSlicesSlice,
       AllDocumentTypes,
       GenreBlockSlice,
+      GenreBlockSliceDefaultPrimary,
       GenreBlockSliceVariation,
       GenreBlockSliceDefault,
       HeroSlice,

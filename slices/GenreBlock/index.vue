@@ -14,11 +14,12 @@ defineProps(
 </script>
 
 <template>
-  <section
+  <figure
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    Placeholder component for genre_block (variation: {{ slice.variation }})
-    Slices
-  </section>
+    <figcaption>
+		{{ slice.primary.genre.text }}
+	</figcaption>
+  </figure>
 </template>

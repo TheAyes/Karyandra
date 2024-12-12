@@ -13,15 +13,36 @@
           "placeholder": ""
         }
       },
+      "artist": {
+        "type": "Text",
+        "config": {
+          "label": "Artist",
+          "placeholder": ""
+        }
+      },
+      "genre": {
+        "type": "Link",
+        "config": {
+          "label": "Genre",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["genre"]
+        }
+      },
+      "cover_image": {
+        "type": "Image",
+        "config": {
+          "label": "Cover Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "rich_text": {
-              "type": "SharedSlice"
-            },
-            "hero": {
               "type": "SharedSlice"
             }
           }

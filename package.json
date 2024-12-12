@@ -26,7 +26,8 @@
 		"eslint": "^9.16.0",
 		"nuxt": "^3.14.1592",
 		"slice-machine-ui": "^2.11.0",
-		"wrangler": "^3.95.0"
+		"wrangler": "^3.95.0",
+		"prettier": "latest"
 	},
 	"peerDependencies": {
 		"meow": "^9.0.0"
