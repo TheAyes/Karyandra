@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/prismic'],
+  modules: ['@nuxtjs/prismic', '@nuxthub/core'],
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,
