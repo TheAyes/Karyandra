@@ -146,7 +146,7 @@ interface HomeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
+  prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
@@ -301,18 +301,33 @@ export type AllDocumentTypes =
   | SongDocument;
 
 /**
+ * Item in *GenreBlock → Default → Primary → Genres*
+ */
+export interface GenreBlockSliceDefaultPrimaryGenresItem {
+  /**
+   * Genre Link field in *GenreBlock → Default → Primary → Genres*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: genre_block.default.primary.genres[].genre_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  genre_link: prismic.ContentRelationshipField<"genre">;
+}
+
+/**
  * Primary content in *GenreBlock → Default → Primary*
  */
 export interface GenreBlockSliceDefaultPrimary {
   /**
-   * Genre field in *GenreBlock → Default → Primary*
+   * Genres field in *GenreBlock → Default → Primary*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: genre_block.default.primary.genre
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: genre_block.default.primary.genres[]
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  genre: prismic.ContentRelationshipField<"genre">;
+  genres: prismic.GroupField<Simplify<GenreBlockSliceDefaultPrimaryGenresItem>>;
 }
 
 /**
@@ -477,14 +492,14 @@ declare module "@prismicio/client" {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig,
+      options?: prismic.ClientConfig
     ): prismic.Client<AllDocumentTypes>;
   }
 
   interface CreateWriteClient {
     (
       repositoryNameOrEndpoint: string,
-      options: prismic.WriteClientConfig,
+      options: prismic.WriteClientConfig
     ): prismic.WriteClient<AllDocumentTypes>;
   }
 
@@ -508,6 +523,7 @@ declare module "@prismicio/client" {
       SongDocumentDataSlicesSlice,
       AllDocumentTypes,
       GenreBlockSlice,
+      GenreBlockSliceDefaultPrimaryGenresItem,
       GenreBlockSliceDefaultPrimary,
       GenreBlockSliceVariation,
       GenreBlockSliceDefault,
@@ -518,7 +534,7 @@ declare module "@prismicio/client" {
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
-      RichTextSliceDefault,
+      RichTextSliceDefault
     };
   }
 }

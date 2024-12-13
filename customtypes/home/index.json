@@ -22,13 +22,6 @@
       }
     },
     "SEO & Metadata": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID",
-          "placeholder": ""
-        }
-      },
       "meta_title": {
         "config": {
           "label": "Meta Title",

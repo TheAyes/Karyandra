@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {type Content} from "@prismicio/client";
+import { type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -37,9 +37,12 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: rgba(0, 0, 0, 50%);
 	background-repeat: no-repeat;
 	background-position: center;
-	background-origin: padding-box;
+	//background-origin: padding-box;
+	background-size: cover;
+	background-blend-mode: darken;
 }
 
 </style>
