@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		css: {
 			preprocessorOptions: {
 				scss: {
+					api: "modern",
 					importers: [new NodePackageImporter()]
 				}
 			}
