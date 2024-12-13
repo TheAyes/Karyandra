@@ -1,0 +1,18 @@
+{
+  "id": "genre_block",
+  "type": "SharedSlice",
+  "name": "Genres",
+  "description": "GenreBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {}
+    }
+  ]
+}

@@ -301,37 +301,7 @@ export type AllDocumentTypes =
   | SongDocument;
 
 /**
- * Item in *GenreBlock → Default → Primary → Genres*
- */
-export interface GenreBlockSliceDefaultPrimaryGenresItem {
-  /**
-   * Genre Link field in *GenreBlock → Default → Primary → Genres*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: genre_block.default.primary.genres[].genre_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  genre_link: prismic.ContentRelationshipField<"genre">;
-}
-
-/**
- * Primary content in *GenreBlock → Default → Primary*
- */
-export interface GenreBlockSliceDefaultPrimary {
-  /**
-   * Genres field in *GenreBlock → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: genre_block.default.primary.genres[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  genres: prismic.GroupField<Simplify<GenreBlockSliceDefaultPrimaryGenresItem>>;
-}
-
-/**
- * Default variation for GenreBlock Slice
+ * Default variation for Genres Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -339,17 +309,17 @@ export interface GenreBlockSliceDefaultPrimary {
  */
 export type GenreBlockSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<GenreBlockSliceDefaultPrimary>,
+  Record<string, never>,
   never
 >;
 
 /**
- * Slice variation for *GenreBlock*
+ * Slice variation for *Genres*
  */
 type GenreBlockSliceVariation = GenreBlockSliceDefault;
 
 /**
- * GenreBlock Shared Slice
+ * Genres Shared Slice
  *
  * - **API ID**: `genre_block`
  * - **Description**: GenreBlock
@@ -523,8 +493,6 @@ declare module "@prismicio/client" {
       SongDocumentDataSlicesSlice,
       AllDocumentTypes,
       GenreBlockSlice,
-      GenreBlockSliceDefaultPrimaryGenresItem,
-      GenreBlockSliceDefaultPrimary,
       GenreBlockSliceVariation,
       GenreBlockSliceDefault,
       HeroSlice,

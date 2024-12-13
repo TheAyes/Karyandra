@@ -1,12 +1,10 @@
 import { NodePackageImporter } from "sass";
-import { apiEndpoint, repositoryName } from "./slicemachine.config.json";
+import { repositoryName } from "./slicemachine.config.json";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: { enabled: true },
-	css: [
-		"./global.scss"
-	],
+	css: ["./global.scss"],
 	vite: {
 		css: {
 			preprocessorOptions: {
@@ -19,8 +17,7 @@ export default defineNuxtConfig({
 	},
 	app: {
 		head: {
-
-			title: "Prismic + Nuxt Minimal Starter",
+			title: "Karyandra",
 			htmlAttrs: {
 				lang: "en"
 			},
@@ -37,15 +34,18 @@ export default defineNuxtConfig({
 					defer: true,
 					src: "https://static.cdn.prismic.io/prismic.js?new=true&repo=karyandra"
 				}
-
 			]
 		}
 	},
 
-	modules: ["@nuxtjs/prismic", "@nuxthub/core"],
+	modules: ["@nuxtjs/prismic", "@nuxthub/core", "@nuxt/image"],
+
+	typescript: {
+		typeCheck: true
+	},
 
 	prismic: {
-		endpoint: apiEndpoint ?? repositoryName,
+		endpoint: repositoryName,
 		preview: "/preview",
 		clientConfig: {
 			routes: [
@@ -53,6 +53,10 @@ export default defineNuxtConfig({
 					type: "home",
 					uid: "*",
 					path: "/"
+				},
+				{
+					type: "genre",
+					path: "/genre/:uid"
 				}
 			]
 		}

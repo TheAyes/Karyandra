@@ -2,10 +2,14 @@
 import { components } from "~/slices";
 
 const prismic = usePrismic();
-const { data: page } = useAsyncData("index", () => prismic.client.getSingle("home"));
+const route = useRoute();
+
+const { data: page } = useAsyncData(route.params.genre as string, () =>
+	prismic.client.getByUID("genre", route.params.genre as string)
+);
 
 useHead({
-	title: page.value?.data.meta_title
+	title: ""
 });
 </script>
 

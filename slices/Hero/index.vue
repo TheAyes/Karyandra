@@ -25,7 +25,7 @@ defineProps(
 		<h1
 			:style="{
 				fontSize: '2.2rem',
-				color: slice.primary.text_color,
+				color: String(slice.primary.text_color),
 				fontWeight: '700'
 			}"
 		>{{ slice.primary.text }}</h1>
