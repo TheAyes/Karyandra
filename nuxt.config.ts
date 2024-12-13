@@ -1,11 +1,24 @@
+import { NodePackageImporter } from "sass";
 import { apiEndpoint, repositoryName } from "./slicemachine.config.json";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: { enabled: true },
-
+	css: [
+		"./global.scss"
+	],
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					importers: [new NodePackageImporter()]
+				}
+			}
+		}
+	},
 	app: {
 		head: {
+
 			title: "Prismic + Nuxt Minimal Starter",
 			htmlAttrs: {
 				lang: "en"

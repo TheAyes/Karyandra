@@ -37,7 +37,7 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(0, 0, 0, 50%);
+	background-color: rgba(0, 0, 0, 60%);
 	background-repeat: no-repeat;
 	background-position: center;
 	/*background-origin: padding-box;*/

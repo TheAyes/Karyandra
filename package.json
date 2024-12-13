@@ -24,6 +24,7 @@
 		"@slicemachine/adapter-nuxt": "^0.3.60",
 		"concurrently": "^9.1.0",
 		"eslint": "^9.16.0",
+		"sass": "^1.83.0",
 		"nuxt": "^3.14.1592",
 		"slice-machine-ui": "^2.11.0",
 		"wrangler": "^3.95.0",
