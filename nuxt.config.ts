@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 				{
 					async: true,
 					defer: true,
-					src: "https://static.cdn.prismic.io/prismic.js?new=true&repo=your-repo-name"
+					src: "https://static.cdn.prismic.io/prismic.js?new=true&repo=karyandra"
 				}
 
 			]

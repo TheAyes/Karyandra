@@ -40,7 +40,7 @@ section {
 	background-color: rgba(0, 0, 0, 50%);
 	background-repeat: no-repeat;
 	background-position: center;
-	//background-origin: padding-box;
+	/*background-origin: padding-box;*/
 	background-size: cover;
 	background-blend-mode: darken;
 }
