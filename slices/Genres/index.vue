@@ -55,7 +55,10 @@ section {
 		gap: 4rem;
 
 		.genre-tile {
-			align-content: center;
+			display: flex;
+			align-items: stretch;
+			flex-direction: column;
+			justify-content: flex-end;
 			width: 250px;
 			height: auto;
 			transition: transform 200ms ease, box-shadow 200ms ease;
@@ -64,7 +67,8 @@ section {
 			background-position: center;
 			background-size: cover;
 
-			box-shadow: 0 0 4px #00000077;
+			$shadowColor: #00000055;
+			box-shadow: 0 0 4px $shadowColor;
 
 			background-blend-mode: lighten;
 
@@ -72,7 +76,14 @@ section {
 
 			&:hover {
 				transform: scale(110%) translateY(-10px);
-				box-shadow: 0 10px 14px #00000077;
+				box-shadow: 0 10px 14px $shadowColor;
+			}
+
+			figcaption {
+				font-size: 2rem;
+				font-weight: 700;
+				padding: 8px;
+				background-color: rgba(0, 0, 0, 40%);
 			}
 		}
 	}
