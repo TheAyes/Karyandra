@@ -189,22 +189,37 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type SongDocumentDataSlicesSlice = RichTextSlice;
+/**
+ * Item in *Song → Genre Group*
+ */
+export interface SongDocumentDataGenreGroupItem {
+  /**
+   * Genre field in *Song → Genre Group*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: song.genre_group[].genre
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  genre: prismic.ContentRelationshipField;
+}
+
+type SongDocumentDataSlicesSlice = LyricsSlice;
 
 /**
  * Content for Song documents
  */
 interface SongDocumentData {
   /**
-   * Song Title field in *Song*
+   * Title field in *Song*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: song.song_title
+   * - **API ID Path**: song.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  song_title: prismic.KeyTextField;
+  title: prismic.KeyTextField;
 
   /**
    * Artist field in *Song*
@@ -218,17 +233,6 @@ interface SongDocumentData {
   artist: prismic.KeyTextField;
 
   /**
-   * Genre field in *Song*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: song.genre
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  genre: prismic.ContentRelationshipField<"genre">;
-
-  /**
    * Cover Image field in *Song*
    *
    * - **Field Type**: Image
@@ -238,6 +242,17 @@ interface SongDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   cover_image: prismic.ImageField<never>;
+
+  /**
+   * Genre Group field in *Song*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: song.genre_group[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  genre_group: prismic.GroupField<Simplify<SongDocumentDataGenreGroupItem>>;
 
   /**
    * Slice Zone field in *Song*
@@ -286,13 +301,13 @@ interface SongDocumentData {
  * Song document from Prismic
  *
  * - **API ID**: `song`
- * - **Repeatable**: `false`
+ * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type SongDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<SongDocumentData>, "song", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<SongDocumentData>, "song", Lang>;
 
 export type AllDocumentTypes =
   | GenreDocument
@@ -414,6 +429,75 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *Lyrics → Default → Primary → Lyrics Group*
+ */
+export interface LyricsSliceDefaultPrimaryLyricsGroupItem {
+  /**
+   * Section Title field in *Lyrics → Default → Primary → Lyrics Group*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Verse
+   * - **API ID Path**: lyrics.default.primary.lyrics_group[].section_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  section_title: prismic.KeyTextField;
+
+  /**
+   * Section Text field in *Lyrics → Default → Primary → Lyrics Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lyrics.default.primary.lyrics_group[].section_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_text: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Lyrics → Default → Primary*
+ */
+export interface LyricsSliceDefaultPrimary {
+  /**
+   * Lyrics Group field in *Lyrics → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lyrics.default.primary.lyrics_group[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  lyrics_group: prismic.GroupField<
+    Simplify<LyricsSliceDefaultPrimaryLyricsGroupItem>
+  >;
+}
+
+/**
+ * Default variation for Lyrics Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LyricsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LyricsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Lyrics*
+ */
+type LyricsSliceVariation = LyricsSliceDefault;
+
+/**
+ * Lyrics Shared Slice
+ *
+ * - **API ID**: `lyrics`
+ * - **Description**: Lyrics
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LyricsSlice = prismic.SharedSlice<"lyrics", LyricsSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -490,6 +574,7 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       SongDocument,
       SongDocumentData,
+      SongDocumentDataGenreGroupItem,
       SongDocumentDataSlicesSlice,
       AllDocumentTypes,
       GenreBlockSlice,
@@ -499,6 +584,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      LyricsSlice,
+      LyricsSliceDefaultPrimaryLyricsGroupItem,
+      LyricsSliceDefaultPrimary,
+      LyricsSliceVariation,
+      LyricsSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

@@ -24,7 +24,6 @@ defineProps(
 	>
 		<h1
 			:style="{
-				fontSize: '2.2rem',
 				color: String(slice.primary.text_color),
 				fontWeight: '700'
 			}"
@@ -37,12 +36,20 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(0, 0, 0, 60%);
+	background-color: #232323;
 	background-repeat: no-repeat;
+	background-attachment: local;
 	background-position: center;
 	/*background-origin: padding-box;*/
 	background-size: cover;
-	background-blend-mode: darken;
+	background-blend-mode: soft-light;
+
+	perspective: 1px;
+
+	h1 {
+		font-size: 4rem;
+
+	}
 }
 
 </style>

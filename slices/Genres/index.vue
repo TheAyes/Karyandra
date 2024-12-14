@@ -40,6 +40,7 @@ section {
 
 	h2 {
 		font-size: 8rem;
+		font-weight: 700;
 		text-align: center;
 	}
 
@@ -55,15 +56,24 @@ section {
 
 		.genre-tile {
 			align-content: center;
-			width: 200px;
+			width: 250px;
 			height: auto;
+			transition: transform 200ms ease, box-shadow 200ms ease;
 			text-align: center;
 			background-color: rgba(255, 255, 255, 12%);
 			background-position: center;
 			background-size: cover;
+
+			box-shadow: 0 0 4px #00000077;
+
 			background-blend-mode: lighten;
 
 			aspect-ratio: 1/1;
+
+			&:hover {
+				transform: scale(110%) translateY(-10px);
+				box-shadow: 0 10px 14px #00000077;
+			}
 		}
 	}
 }

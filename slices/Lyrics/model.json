@@ -1,0 +1,44 @@
+{
+  "id": "lyrics",
+  "type": "SharedSlice",
+  "name": "Lyrics",
+  "description": "Lyrics",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "lyrics_group": {
+          "type": "Group",
+          "config": {
+            "label": "Lyrics Group",
+            "repeat": true,
+            "fields": {
+              "section_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Section Title",
+                  "placeholder": "Verse"
+                }
+              },
+              "section_text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Section Text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

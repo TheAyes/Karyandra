@@ -1,0 +1,70 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"lyrics_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"section_title",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Text",
+									"value": "Verse 1"
+								}
+							],
+							[
+								"section_text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Anim labore elit tempor consequat adipisicing ipsum Lorem anim ullamco ad do proident. Deserunt cillum nisi exercitation nulla aliquip. Minim amet excepteur laboris aliquip laborum."
+											}
+										}
+									]
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"section_title",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Text",
+									"value": "Verse 2"
+								}
+							],
+							[
+								"section_text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Lorem",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
