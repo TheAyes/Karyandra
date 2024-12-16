@@ -61,9 +61,11 @@ section {
 			justify-content: flex-end;
 			width: 250px;
 			height: auto;
-			transition: transform 200ms ease, box-shadow 200ms ease;
+			transition:
+				transform 200ms ease,
+				box-shadow 200ms ease;
 			text-align: center;
-			background-color: rgba(255, 255, 255, 12%);
+			background-color: rgba(255, 255, 255, 5%);
 			background-position: center;
 			background-size: cover;
 
@@ -79,11 +81,20 @@ section {
 				box-shadow: 0 10px 14px $shadowColor;
 			}
 
-			figcaption {
-				font-size: 2rem;
-				font-weight: 700;
-				padding: 8px;
-				background-color: rgba(0, 0, 0, 40%);
+			& > figure {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				height: 100%;
+				background-position: center;
+				background-size: cover;
+
+				figcaption {
+					font-size: 2rem;
+					font-weight: 700;
+					padding: 8px;
+					background-color: rgba(0, 0, 0, 60%);
+				}
 			}
 		}
 	}
