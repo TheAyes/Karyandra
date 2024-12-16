@@ -5,6 +5,9 @@ import { defineSliceZoneComponents } from "@prismicio/vue";
 
 export const components = defineSliceZoneComponents({
   genre_block: defineAsyncComponent(() => import("./Genres/index.vue")),
+  genre_navigation: defineAsyncComponent(
+    () => import("./GenreNavigation/index.vue")
+  ),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
   lyrics: defineAsyncComponent(() => import("./Lyrics/index.vue")),
   rich_text: defineAsyncComponent(() => import("./RichText/index.vue"))

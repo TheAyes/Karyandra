@@ -2,7 +2,29 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"genres": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"genre",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "2b1a015e-2e1d-40c1-afa1-2d638e36d788",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]

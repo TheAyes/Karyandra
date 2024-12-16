@@ -2,7 +2,8 @@
 import { components } from "~/slices";
 
 const prismic = usePrismic();
-const { data: page } = useAsyncData("index", () => prismic.client.getSingle("home"));
+const { data: page } = useAsyncData("index", () =>
+	prismic.client.getSingle("home", { fetchLinks: ["genre.name", "genre.cover_image"] }));
 
 useHead({
 	title: page.value?.data.meta_title

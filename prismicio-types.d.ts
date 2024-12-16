@@ -148,6 +148,51 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
+type NavigationDocumentDataSlicesSlice = GenreNavigationSlice;
+
+/**
+ * Content for Navigation documents
+ */
+interface NavigationDocumentData {
+  /**
+   * Title field in *Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Karyandra
+   * - **API ID Path**: navigation.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Navigation*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<NavigationDocumentDataSlicesSlice>;
+}
+
+/**
+ * Navigation document from Prismic
+ *
+ * - **API ID**: `navigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NavigationDocumentData>,
+    "navigation",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = RichTextSlice;
 
 /**
@@ -312,8 +357,39 @@ export type SongDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | GenreDocument
   | HomeDocument
+  | NavigationDocument
   | PageDocument
   | SongDocument;
+
+/**
+ * Item in *Genres → Default → Primary → Genres*
+ */
+export interface GenreBlockSliceDefaultPrimaryGenresItem {
+  /**
+   * Genre field in *Genres → Default → Primary → Genres*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: genre_block.default.primary.genres[].genre
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  genre: prismic.ContentRelationshipField<"genre">;
+}
+
+/**
+ * Primary content in *Genres → Default → Primary*
+ */
+export interface GenreBlockSliceDefaultPrimary {
+  /**
+   * Genres field in *Genres → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: genre_block.default.primary.genres[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  genres: prismic.GroupField<Simplify<GenreBlockSliceDefaultPrimaryGenresItem>>;
+}
 
 /**
  * Default variation for Genres Slice
@@ -324,7 +400,7 @@ export type AllDocumentTypes =
  */
 export type GenreBlockSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<GenreBlockSliceDefaultPrimary>,
   never
 >;
 
@@ -343,6 +419,36 @@ type GenreBlockSliceVariation = GenreBlockSliceDefault;
 export type GenreBlockSlice = prismic.SharedSlice<
   "genre_block",
   GenreBlockSliceVariation
+>;
+
+/**
+ * Default variation for GenreNavigation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GenreNavigationSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *GenreNavigation*
+ */
+type GenreNavigationSliceVariation = GenreNavigationSliceDefault;
+
+/**
+ * GenreNavigation Shared Slice
+ *
+ * - **API ID**: `genre_navigation`
+ * - **Description**: GenreNavigation
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GenreNavigationSlice = prismic.SharedSlice<
+  "genre_navigation",
+  GenreNavigationSliceVariation
 >;
 
 /**
@@ -569,6 +675,9 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      NavigationDocument,
+      NavigationDocumentData,
+      NavigationDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -578,8 +687,13 @@ declare module "@prismicio/client" {
       SongDocumentDataSlicesSlice,
       AllDocumentTypes,
       GenreBlockSlice,
+      GenreBlockSliceDefaultPrimaryGenresItem,
+      GenreBlockSliceDefaultPrimary,
       GenreBlockSliceVariation,
       GenreBlockSliceDefault,
+      GenreNavigationSlice,
+      GenreNavigationSliceVariation,
+      GenreNavigationSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

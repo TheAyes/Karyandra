@@ -11,7 +11,28 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
+      "primary": {
+        "genres": {
+          "type": "Group",
+          "config": {
+            "label": "Genres",
+            "repeat": true,
+            "fields": {
+              "genre": {
+                "type": "Link",
+                "config": {
+                  "label": "Genre",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "genre"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
       "items": {}
     }
   ]

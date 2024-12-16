@@ -6,27 +6,27 @@ import { type Content } from "@prismicio/client";
 defineProps(getSliceComponentProps<Content.GenreBlockSlice>(["slice", "index", "slices", "context"]));
 
 const prismic = usePrismic();
-const { data: genrePages } = useAsyncData("genres", () => prismic.client.getAllByType("genre"));
+
 </script>
 
 <template>
-	<section>
+	<section
+		:data-slice-type="slice.slice_type"
+		:data-slice-variation="slice.variation"
+	>
 		<h2>Genres</h2>
 		<nav>
 			<NuxtLink
-				v-for="item in genrePages"
-				:to="{ name: 'genre', params: { genre: item.uid } }"
+				v-for="genre in slice.primary.genres"
 				class="genre-tile"
 			>
 				<figure
-					:data-slice-type="slice.slice_type"
-					:data-slice-variation="slice.variation"
 					:style="{
-						backgroundImage: `url(${item.data.cover_image.url})`
+						backgroundImage: `url(${genre.genre.data.cover_image.url})`
 					}"
 				>
 					<figcaption>
-						{{ item.data.name }}
+						{{ genre.genre.data.name }}
 					</figcaption>
 				</figure>
 			</NuxtLink>
@@ -61,9 +61,8 @@ section {
 			justify-content: flex-end;
 			width: 250px;
 			height: auto;
-			transition:
-				transform 200ms ease,
-				box-shadow 200ms ease;
+			transition: transform 200ms ease,
+			box-shadow 200ms ease;
 			text-align: center;
 			background-color: rgba(255, 255, 255, 5%);
 			background-position: center;
