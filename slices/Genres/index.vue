@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type Content } from "@prismicio/client";
+import type { GenreDocument } from "~/prismicio-types";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -22,11 +23,11 @@ const prismic = usePrismic();
 			>
 				<figure
 					:style="{
-						backgroundImage: `url(${genre.genre.data.cover_image.url})`
+						backgroundImage: `url(${(genre.genre as unknown as GenreDocument).data.cover_image.url})`
 					}"
 				>
 					<figcaption>
-						{{ genre.genre.data.name }}
+						{{ (genre.genre as unknown as GenreDocument).data.name }}
 					</figcaption>
 				</figure>
 			</NuxtLink>
