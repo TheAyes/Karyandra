@@ -42,7 +42,7 @@ useHead({
 
 <template>
 	<HeroComponent
-		v-if="page?.data.has_hero" v-once :text="String(page?.data.name)"
+		v-if="page?.data.has_hero" :text="String(page?.data.name)"
 		image-url="'https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress'"
 	/>
 	<ul>
