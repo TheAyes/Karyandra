@@ -368,12 +368,124 @@ interface SongDocumentData {
 export type SongDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SongDocumentData>, "song", Lang>;
 
+/**
+ * Item in *Theme → Colors*
+ */
+export interface ThemeDocumentDataColorsItem {
+  /**
+   * Primary field in *Theme → Colors*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.colors[].primary
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  primary: prismic.ColorField;
+
+  /**
+   * Background field in *Theme → Colors*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.colors[].background
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background: prismic.ColorField;
+
+  /**
+   * Text field in *Theme → Colors*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.colors[].text
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  text: prismic.ColorField;
+}
+
+/**
+ * Item in *Theme → Typography*
+ */
+export interface ThemeDocumentDataTypographyItem {
+  /**
+   * Base Font Size field in *Theme → Typography*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.typography[].base_font_size
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  base_font_size: prismic.NumberField;
+
+  /**
+   * Heading Font field in *Theme → Typography*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Lexend
+   * - **API ID Path**: theme.typography[].heading_font
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  heading_font: prismic.SelectField<"Lexend" | "sans-serif", "filled">;
+
+  /**
+   * Paragraph Font field in *Theme → Typography*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Lexend
+   * - **API ID Path**: theme.typography[].paragraph_font
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  paragraph_font: prismic.SelectField<"Lexend" | "sans-serif", "filled">;
+}
+
+/**
+ * Content for Theme documents
+ */
+interface ThemeDocumentData {
+  /**
+   * Colors field in *Theme*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.colors[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  colors: prismic.GroupField<Simplify<ThemeDocumentDataColorsItem>>;
+
+  /**
+   * Typography field in *Theme*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme.typography[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  typography: prismic.GroupField<Simplify<ThemeDocumentDataTypographyItem>>;
+}
+
+/**
+ * Theme document from Prismic
+ *
+ * - **API ID**: `theme`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ThemeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<ThemeDocumentData>, "theme", Lang>;
+
 export type AllDocumentTypes =
   | FooterDocument
   | GenreDocument
   | HomeDocument
   | NavigationDocument
-  | SongDocument;
+  | SongDocument
+  | ThemeDocument;
 
 /**
  * Item in *Genres → Default → Primary → Genres*
@@ -696,6 +808,10 @@ declare module "@prismicio/client" {
       SongDocumentData,
       SongDocumentDataGenreGroupItem,
       SongDocumentDataSlicesSlice,
+      ThemeDocument,
+      ThemeDocumentData,
+      ThemeDocumentDataColorsItem,
+      ThemeDocumentDataTypographyItem,
       AllDocumentTypes,
       GenreBlockSlice,
       GenreBlockSliceDefaultPrimaryGenresItem,

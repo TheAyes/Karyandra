@@ -6,10 +6,6 @@ const route = useRoute();
 
 const uid = route.params.genre as string;
 
-const { data: page } = useAsyncData(`${route.params.genre as string}-page-data`, () =>
-	prismic.client.getByUID("genre", uid)
-);
-
 const { data } = useAsyncData(
 	`${route.params.genre as string}-song-data`,
 	async (): Promise<{
@@ -38,8 +34,8 @@ useHead({
 
 <template>
 	<HeroComponent
-		v-if="page?.data.has_hero"
-		:text="String(page?.data.name)"
+		v-if="data?.genre.has_hero"
+		:text="String(data?.genre.name)"
 		image-url="'https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress'"
 	/>
 	<main>

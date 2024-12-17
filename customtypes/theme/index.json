@@ -1,0 +1,75 @@
+{
+  "format": "custom",
+  "id": "theme",
+  "label": "Theme",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "colors": {
+        "type": "Group",
+        "config": {
+          "label": "Colors",
+          "repeat": false,
+          "fields": {
+            "primary": {
+              "type": "Color",
+              "config": {
+                "label": "Primary",
+                "placeholder": ""
+              }
+            },
+            "background": {
+              "type": "Color",
+              "config": {
+                "label": "Background",
+                "placeholder": ""
+              }
+            },
+            "text": {
+              "type": "Color",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "typography": {
+        "type": "Group",
+        "config": {
+          "label": "Typography",
+          "repeat": false,
+          "fields": {
+            "base_font_size": {
+              "type": "Number",
+              "config": {
+                "label": "Base Font Size",
+                "placeholder": ""
+              }
+            },
+            "heading_font": {
+              "type": "Select",
+              "config": {
+                "label": "Heading Font",
+                "placeholder": "",
+                "options": ["Lexend", "sans-serif"],
+                "default_value": "Lexend"
+              }
+            },
+            "paragraph_font": {
+              "type": "Select",
+              "config": {
+                "label": "Paragraph Font",
+                "placeholder": "",
+                "options": ["Lexend", "sans-serif"],
+                "default_value": "Lexend"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

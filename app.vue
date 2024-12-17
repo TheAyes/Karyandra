@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const prismic = usePrismic();
+</script>
+
 <style>
 .root-div {
 	display: flex;
