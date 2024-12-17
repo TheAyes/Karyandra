@@ -33,8 +33,6 @@ const { data } = useAsyncData(`${route.params.genre as string}-song-data`, async
 	}
 );
 
-console.log(page.value?.data.has_hero);
-
 useHead({
 	title: ""
 });

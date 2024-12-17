@@ -6,8 +6,6 @@ import type { GenreDocument } from "~/prismicio-types";
 // Consider it as a visual hint for you when templating your slice.
 defineProps(getSliceComponentProps<Content.GenreBlockSlice>(["slice", "index", "slices", "context"]));
 
-const prismic = usePrismic();
-
 </script>
 
 <template>
