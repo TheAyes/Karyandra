@@ -27,11 +27,24 @@
           "thumbnails": []
         }
       },
+      "has_hero": {
+        "type": "Boolean",
+        "config": {
+          "label": "Has Hero",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": true
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "hero": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

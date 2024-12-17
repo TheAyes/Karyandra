@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { type Content } from "@prismicio/client";
 
+const prismic = usePrismic();
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
@@ -14,42 +15,14 @@ defineProps(
 </script>
 
 <template>
-	<section
-		:data-slice-type="slice.slice_type"
-		:data-slice-variation="slice.variation"
-		:style="{
-			height: slice.primary.height + 'px',
-			backgroundImage: `url(${slice.primary.background_image.url})`,
-    	}"
-	>
-		<h1
-			:style="{
-				color: String(slice.primary.text_color),
-				fontWeight: '700'
-			}"
-		>{{ slice.primary.text }}</h1>
-	</section>
+	<HeroComponent
+		:height="slice.variation === 'default' ? Number(slice.primary.height) : 350"
+		:image-url="
+			slice.variation === 'default'
+				? (slice.primary.background_image.url as string | undefined)
+				: 'https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress'
+		"
+		:text="slice.primary.text ?? ''"
+		:text-color="slice.variation === 'default' ?  String(slice.primary.text_color) : '#ed8f12'"
+	/>
 </template>
-
-<style scoped>
-section {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #232323;
-	background-repeat: no-repeat;
-	background-attachment: local;
-	background-position: center;
-	/*background-origin: padding-box;*/
-	background-size: cover;
-	background-blend-mode: soft-light;
-
-	perspective: 1px;
-
-	h1 {
-		font-size: 4rem;
-
-	}
-}
-
-</style>

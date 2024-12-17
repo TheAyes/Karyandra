@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type GenreDocumentDataSlicesSlice = never;
+type GenreDocumentDataSlicesSlice = HeroSlice;
 
 /**
  * Content for Genre documents
@@ -31,6 +31,18 @@ interface GenreDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   cover_image: prismic.ImageField<never>;
+
+  /**
+   * Has Hero field in *Genre*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: genre.has_hero
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_hero: prismic.BooleanField;
 
   /**
    * Slice Zone field in *Genre*
@@ -193,47 +205,6 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
-
-/**
- * Content for Page documents
- */
-interface PageDocumentData {
-  /**
-   * Title field in *Page*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.TitleField;
-
-  /**
-   * Slice Zone field in *Page*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>;
-}
-
-/**
- * Page document from Prismic
- *
- * - **API ID**: `page`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type PageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
-
 /**
  * Item in *Song → Genre Group*
  */
@@ -249,7 +220,7 @@ export interface SongDocumentDataGenreGroupItem {
   genre: prismic.ContentRelationshipField;
 }
 
-type SongDocumentDataSlicesSlice = LyricsSlice;
+type SongDocumentDataSlicesSlice = HeroSlice | LyricsSlice;
 
 /**
  * Content for Song documents
@@ -358,7 +329,6 @@ export type AllDocumentTypes =
   | GenreDocument
   | HomeDocument
   | NavigationDocument
-  | PageDocument
   | SongDocument;
 
 /**
@@ -521,9 +491,37 @@ export type HeroSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Hero → Slayandra Avatar → Primary*
+ */
+export interface HeroSliceSlayandraAvatarPrimary {
+  /**
+   * Text field in *Hero → Slayandra Avatar → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.slayandraAvatar.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Slayandra Avatar variation for Hero Slice
+ *
+ * - **API ID**: `slayandraAvatar`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceSlayandraAvatar = prismic.SharedSliceVariation<
+  "slayandraAvatar",
+  Simplify<HeroSliceSlayandraAvatarPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault;
+type HeroSliceVariation = HeroSliceDefault | HeroSliceSlayandraAvatar;
 
 /**
  * Hero Shared Slice
@@ -678,9 +676,6 @@ declare module "@prismicio/client" {
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataSlicesSlice,
-      PageDocument,
-      PageDocumentData,
-      PageDocumentDataSlicesSlice,
       SongDocument,
       SongDocumentData,
       SongDocumentDataGenreGroupItem,
@@ -696,8 +691,10 @@ declare module "@prismicio/client" {
       GenreNavigationSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
+      HeroSliceSlayandraAvatarPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      HeroSliceSlayandraAvatar,
       LyricsSlice,
       LyricsSliceDefaultPrimaryLyricsGroupItem,
       LyricsSliceDefaultPrimary,

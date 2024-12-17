@@ -48,5 +48,22 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "slayandraAvatar",
+		"primary": {
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "shop",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

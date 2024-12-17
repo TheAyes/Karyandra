@@ -19,6 +19,7 @@ const prismic = usePrismic();
 		<nav>
 			<NuxtLink
 				v-for="genre in slice.primary.genres"
+				:to="{name: 'genre', params: {genre: (genre.genre as unknown as GenreDocument).uid}}"
 				class="genre-tile"
 			>
 				<figure

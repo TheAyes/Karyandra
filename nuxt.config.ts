@@ -44,7 +44,7 @@ export default defineNuxtConfig({
 	fonts: {
 		defaults: {
 			weights: [
-				200, 400, 700
+				200, 400, 700, 900
 			]
 		}
 	},
