@@ -36,7 +36,7 @@ useHead({
 	<HeroComponent
 		v-if="data?.genre.has_hero"
 		:text="String(data?.genre.name)"
-		image-url="'https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress'"
+		image-url="https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress"
 	/>
 	<main>
 		<ul>

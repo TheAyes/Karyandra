@@ -24,14 +24,14 @@ const props = defineProps({
 });
 
 const img = useImage();
-const image = img(props.imageUrl ?? "", { height: 40 });
+const image = img(props.imageUrl ?? "");
 </script>
 
 <template>
 	<section
 		:style="{
 			height: height + 'px',
-			backgroundImage: imageUrl ? `url(${image})` : ''
+			backgroundImage: image ? `url(${image})` : ''
 		}"
 	>
 		<h1
