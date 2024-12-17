@@ -9,7 +9,6 @@ export default defineNuxtConfig({
 		css: {
 			preprocessorOptions: {
 				scss: {
-
 					api: "modern",
 					importers: [new NodePackageImporter()]
 				}
@@ -39,13 +38,11 @@ export default defineNuxtConfig({
 		}
 	},
 
-	modules: ["@nuxtjs/prismic", "@nuxthub/core", "@nuxt/image", "@nuxt/fonts"],
+	modules: ["@nuxtjs/prismic", "@nuxthub/core", "@nuxt/image", "@nuxt/fonts", "@pinia/nuxt"],
 
 	fonts: {
 		defaults: {
-			weights: [
-				200, 400, 700, 900
-			]
+			weights: [200, 400, 700, 900]
 		}
 	},
 
