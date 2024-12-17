@@ -42,12 +42,14 @@ useHead({
 		:text="String(page?.data.name)"
 		image-url="'https://images.prismic.io/karyandra/Z1ssl5bqstJ98bgq_Slayanny.jpg?auto=format,compress'"
 	/>
-	<ul>
-		<li v-for="(song, index) in data?.songs">
-			<p>"{{ song.data.title }}" - {{ song.data.artist }}</p>
-			<hr v-if="index !== (data?.songs.length ?? 1) - 1" />
-		</li>
-	</ul>
+	<main>
+		<ul>
+			<li v-for="(song, index) in data?.songs">
+				<p>"{{ song.data.title }}" - {{ song.data.artist }}</p>
+				<hr v-if="index !== (data?.songs.length ?? 1) - 1" />
+			</li>
+		</ul>
+	</main>
 </template>
 
 <style scoped>
