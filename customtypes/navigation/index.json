@@ -17,11 +17,7 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "genre_navigation": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     }

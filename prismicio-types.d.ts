@@ -4,6 +4,49 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Text field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Background Image field in *Footer*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
 type GenreDocumentDataSlicesSlice = HeroSlice;
 
 /**
@@ -160,7 +203,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type NavigationDocumentDataSlicesSlice = GenreNavigationSlice;
+type NavigationDocumentDataSlicesSlice = never;
 
 /**
  * Content for Navigation documents
@@ -326,6 +369,7 @@ export type SongDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SongDocumentData>, "song", Lang>;
 
 export type AllDocumentTypes =
+  | FooterDocument
   | GenreDocument
   | HomeDocument
   | NavigationDocument
@@ -389,36 +433,6 @@ type GenreBlockSliceVariation = GenreBlockSliceDefault;
 export type GenreBlockSlice = prismic.SharedSlice<
   "genre_block",
   GenreBlockSliceVariation
->;
-
-/**
- * Default variation for GenreNavigation Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type GenreNavigationSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *GenreNavigation*
- */
-type GenreNavigationSliceVariation = GenreNavigationSliceDefault;
-
-/**
- * GenreNavigation Shared Slice
- *
- * - **API ID**: `genre_navigation`
- * - **Description**: GenreNavigation
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type GenreNavigationSlice = prismic.SharedSlice<
-  "genre_navigation",
-  GenreNavigationSliceVariation
 >;
 
 /**
@@ -667,6 +681,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
       GenreDocument,
       GenreDocumentData,
       GenreDocumentDataSlicesSlice,
@@ -686,9 +702,6 @@ declare module "@prismicio/client" {
       GenreBlockSliceDefaultPrimary,
       GenreBlockSliceVariation,
       GenreBlockSliceDefault,
-      GenreNavigationSlice,
-      GenreNavigationSliceVariation,
-      GenreNavigationSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceSlayandraAvatarPrimary,

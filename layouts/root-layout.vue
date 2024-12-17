@@ -1,24 +1,21 @@
-<script lang="ts" setup>
-const prismic = usePrismic();
-</script>
+<script lang="ts" setup></script>
 
 <template>
 	<section class="navigation">
 		<hgroup>
-			<NuxtLink
-				:to="'/'"
-			>
+			<NuxtLink :to="'/'">
 				<NuxtImg
 					src="https://images.prismic.io/karyandra/Z2BphJbqstJ98kra_Logo_Rework_Converted.png?auto=format,compress"
 				/>
 				<h1>Karyandra</h1>
 			</NuxtLink>
-
 		</hgroup>
 		<nav></nav>
 	</section>
 
 	<slot />
+
+	<FooterComponent />
 </template>
 
 <style scoped>
@@ -43,6 +40,4 @@ const prismic = usePrismic();
 		}
 	}
 }
-
 </style>
-
