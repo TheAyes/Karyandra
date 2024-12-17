@@ -23,7 +23,10 @@
         "type": "Image",
         "config": {
           "label": "Cover Image",
-          "constraint": {},
+          "constraint": {
+            "width": 250,
+            "height": 250
+          },
           "thumbnails": []
         }
       },

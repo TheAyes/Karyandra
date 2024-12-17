@@ -1,45 +1,46 @@
 <script lang="ts" setup>
-
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 
-
-defineProps(
-	{
-		height: {
-			type: Number,
-			required: false,
-			default: 350
-		},
-		imageUrl: {
-			type: String,
-			required: false
-		},
-		textColor: {
-			type: String,
-			required: false,
-			default: "#ed8f12"
-		},
-		text: {
-			type: String,
-			required: true
-		}
+const props = defineProps({
+	height: {
+		type: Number,
+		required: false,
+		default: 350
+	},
+	imageUrl: {
+		type: String,
+		required: false
+	},
+	textColor: {
+		type: String,
+		required: false,
+		default: "#ed8f12"
+	},
+	text: {
+		type: String,
+		required: true
 	}
-);
+});
+
+const img = useImage();
+const image = img(props.imageUrl ?? "", { height: 40 });
 </script>
 
 <template>
 	<section
 		:style="{
 			height: height + 'px',
-			backgroundImage: imageUrl ? `url(${imageUrl})` : '',
-    	}"
+			backgroundImage: imageUrl ? `url(${image})` : ''
+		}"
 	>
 		<h1
 			:style="{
 				color: textColor
 			}"
-		>{{ text }}</h1>
+		>
+			{{ text }}
+		</h1>
 	</section>
 </template>
 
@@ -65,5 +66,4 @@ section {
 		font-weight: 900;
 	}
 }
-
 </style>

@@ -6,6 +6,16 @@
   "status": true,
   "json": {
     "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {
+            "height": 40
+          },
+          "thumbnails": []
+        }
+      },
       "title": {
         "type": "Text",
         "config": {

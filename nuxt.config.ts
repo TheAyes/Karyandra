@@ -40,6 +40,10 @@ export default defineNuxtConfig({
 
 	modules: ["@nuxtjs/prismic", "@nuxthub/core", "@nuxt/image", "@nuxt/fonts", "@pinia/nuxt"],
 
+	image: {
+		prismic: { repositoryName: "karyandra" }
+	},
+
 	fonts: {
 		defaults: {
 			weights: [200, 400, 700, 900]

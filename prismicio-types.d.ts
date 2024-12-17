@@ -210,6 +210,17 @@ type NavigationDocumentDataSlicesSlice = never;
  */
 interface NavigationDocumentData {
   /**
+   * Logo field in *Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
    * Title field in *Navigation*
    *
    * - **Field Type**: Text
